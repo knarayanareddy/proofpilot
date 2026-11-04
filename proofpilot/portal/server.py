@@ -15,7 +15,7 @@ import uuid
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import urlparse, parse_qs
 
 try:
     from . import workflow, agent, executor, proof, mock_loop, meta_agent
@@ -204,6 +204,77 @@ def patch_supplier(c, supplier_id, cap, body, request_id):
 class Handler(BaseHTTPRequestHandler):
     server_version='ProofPilotDemo/1.0'
     def log_message(self, fmt,*args): pass  # no request headers or tokens in logs
+    FILM = ROOT/'video'/'out'/'proofpilot-demo.mp4'
+    FILM_POSTER = ROOT/'video'/'out'/'poster.jpg'
+
+    def serve_file(self,path,ctype,attachment=False):
+        # Range support matters here: browsers refuse to seek in a video without it.
+        if not path.is_file(): raise Problem(404,'Not found')
+        total=path.stat().st_size; start,end,status=0,total-1,200
+        rng=self.headers.get('Range')
+        if rng and rng.startswith('bytes='):
+            spec=rng[6:].split(',')[0].strip()
+            try:
+                if spec.startswith('-'): start=max(0,total-int(spec[1:] or 0))
+                else:
+                    head,_,tail=spec.partition('-')
+                    start=int(head); end=int(tail) if tail else total-1
+            except ValueError:
+                self.send_response(416); self.send_header('Content-Range','bytes */%d'%total)
+                self.send_header('Content-Length','0'); self.end_headers(); return
+            end=min(end,total-1)
+            if start>end or start>=total:
+                self.send_response(416); self.send_header('Content-Range','bytes */%d'%total)
+                self.send_header('Content-Length','0'); self.end_headers(); return
+            status=206
+        chunk=b''
+        if self.command!='HEAD':
+            with path.open('rb') as fh:
+                fh.seek(start); chunk=fh.read(end-start+1)
+        self.send_response(status)
+        self.send_header('Content-Type',ctype)
+        self.send_header('Accept-Ranges','bytes')
+        self.send_header('Cache-Control','no-store')
+        if status==206: self.send_header('Content-Range','bytes %d-%d/%d'%(start,end,total))
+        if attachment: self.send_header('Content-Disposition','attachment; filename="proofpilot-demo.mp4"')
+        self.send_header('Content-Length',str(len(chunk)))
+        self.end_headers()
+        if chunk: self.wfile.write(chunk)
+
+    def film_page(self):
+        body='''<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>ProofPilot · Product film</title>
+<style>
+:root{color-scheme:dark}body{margin:0;background:#080B14;color:#E8ECF6;
+font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 24px;border-bottom:1px solid #1B2233}
+.brand{display:flex;align-items:center;gap:10px;font-weight:750;letter-spacing:-.4px}
+.logo{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:linear-gradient(140deg,#6C5CE7,#22D3EE);color:#fff}
+a{color:#9DB4FF;text-decoration:none;font-size:13px}
+.wrap{max-width:1180px;margin:0 auto;padding:26px 24px 40px}
+video{width:100%;aspect-ratio:16/9;background:#000;border-radius:14px;border:1px solid #1B2233;display:block}
+h1{font-size:22px;letter-spacing:-.6px;margin:22px 0 6px}
+p{color:#8E9AB4;font-size:14px;line-height:1.6;margin:0 0 10px;max-width:760px}
+.links{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:13px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#6E7A94;font-size:12px}
+</style></head><body>
+<header><div class="brand"><span class="logo">&#10037;</span>ProofPilot</div>
+<div style="display:flex;gap:18px"><a href="/workspace">Task workspace &#8599;</a><a href="/">Supplier portal &#8599;</a></div></header>
+<div class="wrap">
+<video controls playsinline preload="metadata" poster="/film-poster.jpg"><source src="/film.mp4" type="video/mp4">Your browser cannot play this video.</video>
+<h1>ProofPilot demo film &middot; 3:03</h1>
+<p>A three-minute walkthrough: the contract, the ambiguity stop, the model proposing and the policy gate deciding,
+the isolated browser, the server-side write, and the independent read-back that has to succeed before anything is called verified.
+Every number on screen comes from <span class="mono">reports/measurement.json</span>.</p>
+<div class="links"><a href="/film.mp4?download=1" download>Download MP4 &darr;</a><a href="/film-contact-sheet.jpg" target="_blank" rel="noopener">Contact sheet &#8599;</a><a href="/evaluation" target="_blank" rel="noopener">Evaluation report &#8599;</a></div>
+<p class="mono" style="margin-top:16px">Built with Remotion: every scene is a React component, rendered frame-by-frame to H.264. Narration is a real voice-over.</p>
+</div></body></html>'''
+        data=body.encode('utf-8')
+        self.send_response(200); self.send_header('Content-Type','text/html; charset=utf-8')
+        self.send_header('Content-Security-Policy',"default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'none'; media-src 'self'; img-src 'self'; base-uri 'none'")
+        self.send_header('Cache-Control','no-store'); self.send_header('Content-Length',str(len(data)))
+        self.end_headers(); self.wfile.write(data)
+
     def send_json(self,status,obj,rid=None):
         data=canonical(obj); self.send_response(status); self.send_header('Content-Type','application/json; charset=utf-8'); self.send_header('Cache-Control','no-store'); self.send_header('X-Content-Type-Options','nosniff'); self.send_header('X-Request-ID',rid or uuid.uuid4().hex); self.send_header('Content-Length',str(len(data))); self.end_headers(); self.wfile.write(data)
     def body(self):
@@ -233,6 +304,16 @@ class Handler(BaseHTTPRequestHandler):
                 report=ROOT/'reports'/('latest.html' if path=='/evaluation' else 'latest.json')
                 if not report.is_file(): raise Problem(404,'No evaluation report yet; run make evaluate locally.')
                 data=report.read_bytes();self.send_response(200);self.send_header('Content-Type','text/html; charset=utf-8' if path=='/evaluation' else 'application/json; charset=utf-8');self.send_header('Cache-Control','no-store');self.send_header('X-Content-Type-Options','nosniff');self.send_header('Content-Security-Policy',"default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'");self.send_header('Content-Length',str(len(data)));self.end_headers();self.wfile.write(data);return
+            if self.command in ('GET','HEAD') and path in ('/film','/demo/film'):
+                if self.command=='HEAD':
+                    self.send_response(200); self.send_header('Content-Type','text/html; charset=utf-8')
+                    self.send_header('Content-Length','0'); self.end_headers(); return
+                self.film_page(); return
+            if self.command in ('GET','HEAD') and path in ('/film.mp4','/demo/film.mp4'):
+                # ?download=1 forces a save dialog instead of inline playback.
+                return self.serve_file(self.FILM,'video/mp4',attachment='download' in parse_qs(urlparse(self.path).query))
+            if self.command in ('GET','HEAD') and path in ('/film-poster.jpg','/film-contact-sheet.jpg'):
+                return self.serve_file(self.FILM_POSTER if 'poster' in path else ROOT/'video'/'out'/'contact-sheet.jpg','image/jpeg')
             if self.command=='GET' and path=='/health': return self.send_json(200,{'status':'ok','demo_mode':DEMO_MODE},rid)
             if self.command=='GET' and path=='/demo/source.csv':
                 data=CSV_TEXT.encode(); self.send_response(200); self.send_header('Content-Type','text/csv; charset=utf-8'); self.send_header('Content-Length',str(len(data))); self.end_headers(); self.wfile.write(data); return
@@ -402,6 +483,7 @@ class Handler(BaseHTTPRequestHandler):
             self.send_json(500,{'error':'Internal server error','request_id':rid},rid)
         finally: c.close()
     def do_GET(self): self.handle_request()
+    def do_HEAD(self): self.handle_request()
     def do_POST(self): self.handle_request()
     def do_PATCH(self): self.handle_request()
     def do_DELETE(self): self.handle_request()

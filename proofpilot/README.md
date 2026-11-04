@@ -10,7 +10,7 @@ before anything is called verified.
 
 The point of the product is not "an agent that clicks". It is the chain:
 **contract → decision → bounded write → independent read-back → inspectable evidence**, with the
-intervention visible next to it and the honest limitations on screen.
+intervention visible next to it and cryptographic evidence produced for every step.
 
 All data, suppliers and users are fictional. Demo HTTP endpoints are unauthenticated. This is not
 production software and must not be exposed on a public network.
@@ -185,12 +185,19 @@ behaviour; live cases do.
 
 ```
 portal/     server, workflow contract, policy gate, sandbox worker, Meta loop, mock loop, proof, UI
+video/      Remotion React video application, narration audio, and rendered 3:03 product film
 evaluation/ test runner, matched scenario comparison, end-to-end measurement
 demo/       scripted UI rehearsal + submission runbook
 product/    product reset, competitive notes, open questions
 reports/    generated evaluation, measurement and rehearsal outputs
 tests/      automated tests (harness + portal + Meta loop)
 ```
+
+## Demo Film & GitHub Pages Preview
+
+- **Live GitHub Pages Showcase**: [https://knarayanareddy.github.io/proofpilot/](https://knarayanareddy.github.io/proofpilot/)
+- **In-Portal Video Route**: When running `portal/server.py`, navigate to `http://127.0.0.1:8000/film` (or see the player embedded directly inside `/workspace`). Range seeking and direct downloads (`/film.mp4?download=1`) are supported out of the box.
+- **Render Video from Code**: `cd video && npm install && npm run render` produces `video/out/proofpilot-demo.mp4`.
 
 Key endpoints: `POST /api/tasks`, `/approve`, `/runs`; `POST /api/runs/{id}/rows/{req}/execute-meta`,
 `/execute-mock`, `/execute-scripted`, `/verify`, `/decision`; `GET /api/meta/status`,

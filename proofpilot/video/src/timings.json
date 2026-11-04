@@ -1,0 +1,88 @@
+{
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "scenes": [
+    {
+      "id": "s01",
+      "index": 1,
+      "audio": "audio/01.mp3",
+      "seconds": 15.1,
+      "from": 0,
+      "dur": 480
+    },
+    {
+      "id": "s02",
+      "index": 2,
+      "audio": "audio/02.mp3",
+      "seconds": 13.82,
+      "from": 480,
+      "dur": 442
+    },
+    {
+      "id": "s03",
+      "index": 3,
+      "audio": "audio/03.mp3",
+      "seconds": 11.83,
+      "from": 922,
+      "dur": 382
+    },
+    {
+      "id": "s04",
+      "index": 4,
+      "audio": "audio/04.mp3",
+      "seconds": 18.68,
+      "from": 1304,
+      "dur": 587
+    },
+    {
+      "id": "s05",
+      "index": 5,
+      "audio": "audio/05.mp3",
+      "seconds": 14.63,
+      "from": 1891,
+      "dur": 466
+    },
+    {
+      "id": "s06",
+      "index": 6,
+      "audio": "audio/06.mp3",
+      "seconds": 18.08,
+      "from": 2357,
+      "dur": 569
+    },
+    {
+      "id": "s07",
+      "index": 7,
+      "audio": "audio/07.mp3",
+      "seconds": 15.12,
+      "from": 2926,
+      "dur": 481
+    },
+    {
+      "id": "s08",
+      "index": 8,
+      "audio": "audio/08.mp3",
+      "seconds": 17.95,
+      "from": 3407,
+      "dur": 565
+    },
+    {
+      "id": "s09",
+      "index": 9,
+      "audio": "audio/09.mp3",
+      "seconds": 19.72,
+      "from": 3972,
+      "dur": 619
+    },
+    {
+      "id": "s10",
+      "index": 10,
+      "audio": "audio/10.mp3",
+      "seconds": 28.63,
+      "from": 4591,
+      "dur": 904
+    }
+  ],
+  "total": 5495
+}

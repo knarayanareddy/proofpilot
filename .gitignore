@@ -30,3 +30,10 @@ data/artifacts/
 */.DS_Store
 .sudo_as_admin_successful
 *.tmp
+
+# Node.js
+node_modules/
+*/node_modules/
+.remotion/
+*/.remotion/
+

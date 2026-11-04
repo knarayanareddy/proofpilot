@@ -102,6 +102,32 @@ the ZIP. Close on limitations: point-in-time, same-system verifier, CSV bytes no
 | Bubblewrap/Chromium missing | Say isolation is unavailable and stop execution | Fall back to the unsandboxed path while claiming isolation |
 | Recording fails | Debug with the failure screenshot; re-run | Show a stale or partial recording as a pass |
 
+## 5b. The film (inside the running portal)
+
+The portal serves the demo film, so it is reachable from the preview itself:
+
+| Route | What it is |
+|---|---|
+| `/film` | Full-page player (3:03, 1920×1080, narrated) |
+| `/film.mp4` | The MP4; supports HTTP Range, so seeking works. `?download=1` forces a save dialog |
+| `/film-poster.jpg` | Poster frame used by both players |
+| `/film-contact-sheet.jpg` | 12 frames from the film, for a quick skim or a static slide |
+
+The task workspace (`/workspace`) embeds the player in a **Product film · 3:03** panel just below the
+hero, and both `/` and `/workspace` carry a **Demo film ↗** link in the header. The file is served
+from `video/out/proofpilot-demo.mp4` — re-render it and the portal picks it up on the next request,
+no restart needed:
+
+```bash
+cd video && npx remotion render src/index.js ProofPilot out/proofpilot-demo.mp4 --concurrency=2
+```
+
+Wording note, because it is easy to get wrong: `reports/measurement.json` holds **18 measurement
+rows**, but they are **10 distinct cases** — C01, C02, C03 and C09 are the live ones and are run three
+times each. So "eighteen cases" is defensible and still misleading. The film says "eighteen
+**attempts**" for the 0/18 unauthorized-mutation denominator, which is exactly what that metric counts.
+Keep it that way if the script changes.
+
 ## 6. Numbers to quote (regenerate before presenting)
 
 `make evaluate` prints the live measurement. Quote numerator and denominator together, always state
@@ -117,7 +143,7 @@ LIVE_META · vision_function_tool
 Quote the live-completion spread when asked "how often does it work": across four identical suites
 the score was 9/12, 6/12, 8/12 and 9/12, and the shortfalls were always the model replying in prose
 instead of calling the tool — never an unauthorized write. Bounded retry prompts recovered most of
-them. Eighteen cases on one model version on one day are not a statistical estimate.
+them. Eighteen measurement rows — ten distinct cases, with the four live ones repeated three times each — on one model version on one day are not a statistical estimate.
 
 ## 7. Open gates before a full Meta-focused submission
 

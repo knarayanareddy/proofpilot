@@ -75,11 +75,21 @@ th{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu
 footer{max-width:1180px;margin:0 auto;padding:0 22px 40px;color:var(--muted);font-size:12px}
 .limits{margin:0;padding-left:18px;font-size:12.5px;color:#4a5470}.limits li{margin:5px 0}
 @media (max-width:980px){.layout,.hero{grid-template-columns:1fr}.metrics,.chain{grid-template-columns:repeat(2,1fr)}}
+
+.film-cta{margin-top:16px;background:linear-gradient(140deg,#0C1020,#0A0D18);border-color:#232B40}
+.film-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px;align-items:center}
+.film{width:100%;aspect-ratio:16/9;background:#000;border:1px solid #232B40;border-radius:12px;display:block}
+.film-side h2.film-title{font-size:19px;letter-spacing:-.6px;margin:8px 0 8px;color:#EDF1FA}
+.film-facts{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px}
+.film-facts li{display:grid;grid-template-columns:132px 1fr;gap:12px;align-items:start;font-size:12.5px;line-height:1.5}
+.film-facts span{color:#8FA8FF;font-weight:650}
+.film-facts em{color:#9AA5BF;font-style:normal}
+@media(max-width:900px){.film-grid{grid-template-columns:1fr}.film-facts li{grid-template-columns:1fr}}
 </style></head><body>
 <header>
   <div class="brand"><span class="logo">✳</span>ProofPilot</div>
   <div style="display:flex;align-items:center;gap:14px"><span class="badge" id="modeBadge">checking model…</span>
-    <span class="head-links"><a href="/evaluation" target="_blank" rel="noopener">Evaluation ↗</a><a href="/" target="_blank" rel="noopener">Supplier portal ↗</a></span></div>
+    <span class="head-links"><a href="/evaluation" target="_blank" rel="noopener">Evaluation ↗</a><a href="/film" target="_blank" rel="noopener">Demo film ↗</a><a href="/" target="_blank" rel="noopener">Supplier portal ↗</a></span></div>
 </header>
 
 <main class="wrap">
@@ -94,6 +104,26 @@ footer{max-width:1180px;margin:0 auto;padding:0 22px 40px;color:var(--muted);fon
       <div><strong>In scope</strong><p>The approved shipping address, on the exact supplier and record version.</p></div>
       <div><strong>Out of scope</strong><p>Bank accounts, tax identifiers, unapproved values, any other supplier.</p></div>
       <div><strong>Proof, not promise</strong><p>After the write, a separate read-only principal reads the portal back. Success is only shown when that read-back succeeds.</p></div>
+    </div>
+  </section>
+
+  <section class="panel film-cta">
+    <div class="film-grid">
+      <video class="film" controls playsinline preload="metadata" poster="/film-poster.jpg">
+        <source src="/film.mp4" type="video/mp4">
+        Your browser cannot play this video — <a href="/film.mp4?download=1">download the MP4</a>.
+      </video>
+      <div class="film-side">
+        <div class="eyebrow">PRODUCT FILM · 3:03</div>
+        <h2 class="film-title">Watch it before you run it</h2>
+        <p class="hint">Three minutes, narrated: the contract, the ambiguity stop, the model proposing and the policy gate deciding, the isolated browser, the server-side write, and the independent read-back that has to succeed before anything is called verified.</p>
+        <ul class="film-facts">
+          <li><span>Real measurement</span><em>7/7 authorised · 0/18 unauthorised mutations · 11/11 failures surfaced · 9/9 where completion was possible</em></li>
+          <li><span>Built as code</span><em>Every scene is a React component, rendered frame-by-frame to H.264 — no screen recording</em></li>
+        </ul>
+        <div class="buttons"><a class="secondary" href="/film" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">Open film page ↗</a><a class="ghost" href="/film.mp4?download=1" download style="text-decoration:none;display:inline-block">Download MP4 ↓</a></div>
+        <p class="hint" style="margin-top:12px">Every number on screen comes from <span class="hash">reports/measurement.json</span>. Live-model and scripted-fixture results are never combined into one rate.</p>
+      </div>
     </div>
   </section>
 

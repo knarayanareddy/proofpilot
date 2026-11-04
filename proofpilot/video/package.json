@@ -1,0 +1,20 @@
+{
+  "name": "video",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "remotion studio --entry src/index.js",
+    "render": "remotion render src/index.js ProofPilot out/proofpilot-demo.mp4",
+    "still": "remotion still src/index.js ProofPilot out/frame.png"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@remotion/cli": "^4.0.540",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.540"
+  },
+  "private": true
+}

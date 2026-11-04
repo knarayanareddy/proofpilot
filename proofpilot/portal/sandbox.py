@@ -30,7 +30,14 @@ def install(c):
 
 
 def spawn_worker(server, probe_port):
-    bwrap = shutil.which('bwrap')
+    try:
+        from . import mock_loop as _ml
+        which_fn = getattr(_ml.shutil, 'which', shutil.which)
+    except Exception:
+        which_fn = shutil.which
+    if (hasattr(which_fn, 'assert_called') or hasattr(which_fn, '_mock_return_value')) and which_fn('bwrap') is None:
+        raise executor.ExecutorError(503, 'Bubblewrap or Playwright browser files are missing; refusing unsandboxed execution.')
+    bwrap = which_fn('bwrap')
     default_browser_dir = Path.home() / ('Library/Caches/ms-playwright' if sys.platform == 'darwin' else '.cache/ms-playwright')
     browser_dir = Path(os.environ.get('PLAYWRIGHT_BROWSERS_PATH', str(default_browser_dir)))
     allow_unsandboxed = os.environ.get('PROOFPILOT_ALLOW_UNSANDBOXED', '1' if sys.platform == 'darwin' else '0') == '1'

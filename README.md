@@ -2,7 +2,7 @@
 
 **Move the shipment. Never the payment.**
 
-ProofPilot is a verifiable supplier-master change control system designed to defeat payment-diversion attacks and indirect prompt injection. Rather than allowing an autonomous agent to execute direct mutations, ProofPilot confines operations to an inviolable chain:
+ProofPilot is a verifiable supplier-master change control system designed to defeat payment-diversion attacks and indirect prompt injection in autonomous computer-use agents. Rather than allowing an agent to execute direct database mutations or uncontrolled browser actions, ProofPilot confines operations to an inviolable chain:
 
 $$\text{Contract} \longrightarrow \text{Decision} \longrightarrow \text{Bounded Write} \longrightarrow \text{Independent Read-back} \longrightarrow \text{Inspectable Evidence}$$
 
@@ -10,17 +10,31 @@ All demo endpoints, data, and suppliers are fictional. Designed for controlled d
 
 ---
 
+## Live Interactive Preview & Demo Film
+
+- 🌐 **Live GitHub Pages Preview**: [https://knarayanareddy.github.io/proofpilot/](https://knarayanareddy.github.io/proofpilot/)
+- 🎬 **Product Demo Film**: 3:03 narrated architectural walkthrough built frame-by-frame with Remotion (React to H.264), streaming directly in the portal at `/film` and embedded on GitHub Pages.
+- 📊 **Security Benchmark**: 7/7 authorized successes · 0/18 unauthorized mutations (100% defense) · 10/10 verification TP/TN · 11/11 failures correctly surfaced.
+
+---
+
 ## Repository Layout
 
 ```
 proofpilot/
+├── docs/                           # GitHub Pages static interactive preview & video player
+│   ├── index.html                  # Standalone interactive showcase with embedded video player
+│   ├── proofpilot-demo.mp4         # 1080p 30fps narrated product video (13.7 MB)
+│   ├── poster.jpg                  # Video poster frame
+│   └── contact-sheet.jpg           # 12-frame architectural contact sheet
 ├── proofpilot/                     # Runnable implementation, web portal, and tests
 │   ├── portal/                     # Server, workflow contracts, policy gates, executor, UI
+│   ├── video/                      # Remotion React cinema app, audio narration & rendered video
 │   ├── evaluation/                 # Test runner, matched scenario comparisons, E2E benchmarks
 │   ├── demo/                       # Scripted UI rehearsal runner and submission runbook
 │   ├── product/                    # Product reset, competitive notes, and validation hypotheses
 │   ├── reports/                    # Pre-generated evaluation reports, metrics, and rehearsal recordings
-│   ├── tests/                      # Automated test suite (60+ unit and integration tests)
+│   ├── tests/                      # Automated test suite (67 unit and integration tests)
 │   ├── Makefile                    # Target automation (test, run, reset, evaluate, rehearse)
 │   ├── README.md                   # Detailed implementation documentation
 │   └── requirements.txt            # Python dependencies (Playwright, Pillow)
@@ -43,7 +57,7 @@ proofpilot/
    Supports Meta `muse-wonder-1.0` via the Responses API. The system attempts the documented `computer_call` batched tool first; when unsupported on the provider key, it falls back seamlessly to **vision + function calling** (`propose_action` tool with strict whitelisted actions). Every trace discloses whether real model inference, mock, or scripted execution took place.
 
 4. **OS Sandbox Isolation (`portal/sandbox.py`)**  
-   Under Linux, the browser worker executes inside unprivileged Bubblewrap (`bwrap`) containers using isolated user, network, PID, IPC, and mount namespaces with `--clearenv` to guarantee the model API key never leaks to the execution environment.
+   Under Linux, the browser worker executes inside unprivileged Bubblewrap (`bwrap`) containers using isolated user, network, PID, IPC, and mount namespaces with `--clearenv` to guarantee the model API key never leaks to the execution environment. On macOS / Darwin, network isolation is enforced via Playwright route-abort hooks with sanitized execution environments.
 
 5. **Independent Read-Back Verifier (`portal/proof.py`)**  
    Commits are held in a `WRITTEN_UNVERIFIED` state until a separate read-only principal (`verifier` identity) independently polls the live API over HTTP, confirms value parity, version increment, and verifies SHA-256 hashes of restricted fields remain unchanged.
@@ -56,21 +70,22 @@ proofpilot/
 ## Quickstart
 
 ### Prerequisites
-- Python 3.10+
+- Python 3.10+ (or Python 3.9+)
 - Playwright Chromium (`python3 -m playwright install chromium`)
-- Bubblewrap (`bwrap`) for Linux sandbox isolation (optional on macOS)
+- Bubblewrap (`bwrap`) for Linux sandbox isolation (automatic fallback on macOS)
 
 ### Running Locally
 
 ```bash
-cd proofpilot
+cd proofpilot/proofpilot
 
 # Install dependencies
 python3 -m pip install -r requirements.txt
 python3 -m playwright install chromium
 
-# Run the test suite
-make test
+# Run the test suite (67 tests)
+python3 -m unittest discover -s tests -p "test_*.py"
+# or: make test
 
 # Run end-to-end evaluation and generate reports
 make evaluate
@@ -78,9 +93,24 @@ make evaluate
 # Run demo UI rehearsals
 make rehearse
 
-# Start the interactive workspace portal
-make run
+# Start the interactive workspace portal (includes /workspace and /film)
+python3 portal/server.py
+# or: make run
 # Open http://127.0.0.1:8000/workspace
+# Open http://127.0.0.1:8000/film
+```
+
+---
+
+## Product Video Rendering (Remotion)
+
+The demo video is built as code using Remotion:
+
+```bash
+cd proofpilot/proofpilot/video
+npm install
+npm run render
+# Outputs to proofpilot/video/out/proofpilot-demo.mp4
 ```
 
 ---
@@ -91,3 +121,4 @@ make run
 - [Master System Specification](proofpilot-spec/ProofPilot_Master_Specification.md)
 - [Demo & Submission Runbook](proofpilot/demo/DEMO_AND_SUBMISSION_RUNBOOK.md)
 - [Product Reset & Strategy](proofpilot/product/PRODUCT_RESET.md)
+- [Live GitHub Pages Rendition](https://knarayanareddy.github.io/proofpilot/)
