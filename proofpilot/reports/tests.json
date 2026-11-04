@@ -1,0 +1,278 @@
+{
+  "mode": "deterministic_unittest_and_scripted_browser",
+  "created_at": 1793804889,
+  "run": 67,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "outcomes": [
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_ambiguous_row_cannot_be_executed_by_the_model",
+      "status": "PASS"
+    },
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_approved_actions_write_and_verify",
+      "status": "PASS"
+    },
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_cancel_before_write_and_unknown_state_never_retry",
+      "status": "PASS"
+    },
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_click_outside_approved_targets_is_denied_before_any_write",
+      "status": "PASS"
+    },
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_computer_tool_rejection_falls_back_to_vision_planner",
+      "status": "PASS"
+    },
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_endpoint_requires_confirmation_and_reports_missing_key",
+      "status": "PASS"
+    },
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_endpoint_runs_loop_and_verification_through_http",
+      "status": "PASS"
+    },
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_key_endpoint_never_returns_the_key",
+      "status": "PASS"
+    },
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_key_file_roundtrip_is_masked_and_permissions_tight",
+      "status": "PASS"
+    },
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_malformed_provider_responses_stop_execution",
+      "status": "PASS"
+    },
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_no_key_makes_no_request_and_changes_nothing",
+      "status": "PASS"
+    },
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_pending_safety_checks_are_never_auto_acknowledged",
+      "status": "PASS"
+    },
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_process_call_cap_blocks_further_requests",
+      "status": "PASS"
+    },
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_resolve_batch_maps_only_approved_semantics",
+      "status": "PASS"
+    },
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_status_reports_configuration_without_exposing_key",
+      "status": "PASS"
+    },
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_stored_key_file_is_used_but_never_returned",
+      "status": "PASS"
+    },
+    {
+      "test": "test_meta_loop.MetaLoopTests.test_untrusted_instruction_text_cannot_change_the_value",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_agent_all_action_types_denied_and_redacted",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_agent_cancelled_run_rejected",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_agent_endpoint_with_mocked_transport_is_not_real_evidence",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_agent_meta_opt_in_required",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_agent_no_key_fails_without_attempt_or_action",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_agent_quota_is_bounded",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_ambiguous_requires_bound_approval",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_bank_and_mixed_fields_denied_atomically",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_capability_expiry_and_tampering",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_empty_or_unknown_mutation_fields_fail",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_executor_action_policy_denies_extra_or_wrong_actions",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_idempotency",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_mock_cancel_before_write",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_mock_concurrent_cancel_after_commit_preserves_unverified",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_mock_concurrent_cancel_before_commit_denied",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_mock_lost_ack_recovers_without_retry",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_mock_malicious_action_denied_before_write",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_mock_model_loop_isolation_and_verification",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_mock_sandbox_missing_fails_closed",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_mock_unknown_inflight_never_blindly_retries",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_mock_unresolved_attempt_blocks_both_executors",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_origin_and_no_secrets_in_events",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_phase4_changed_restricted_field_not_verified",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_phase4_html_escapes_untrusted_values",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_phase4_mismatch_is_failed",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_phase4_real_http_readback_and_evidence",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_phase4_unavailable_then_retry",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_phase4_verify_requires_real_write",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_phase4_zip_and_missing_artifact_disclosure",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_phase5_concurrent_idempotency_commits_once",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_phase5_untrusted_supplier_note_does_not_change_policy",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_real_adapter_request_shape_and_redaction_with_fake_http",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_scripted_browser_blocked_for_ambiguous_or_cancelled",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_scripted_browser_simulated_save_failure",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_scripted_browser_writes_allowed_and_captures_trace",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_seed_and_reset",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_simulated_503_and_unchanged",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_stale_version",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_success_and_independent_read",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_tax_unknown_fields_wrong_target_and_wrong_value",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_verifier_cannot_write",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_workflow_approval_binding_and_replay",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_workflow_bound_capability_denies_bank_and_cancelled_write",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_workflow_contract_validation",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_workflow_name_id_mismatch_needs_review",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_workflow_reject_cancel_and_reset",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_workflow_requires_approval_and_never_writes",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_workflow_selection_expires_and_version_change_invalidates",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_workflow_stale_candidate_version_fails",
+      "status": "PASS"
+    },
+    {
+      "test": "test_portal.PortalTests.test_wrong_contract_or_record_version_approval_rejected",
+      "status": "PASS"
+    }
+  ]
+}

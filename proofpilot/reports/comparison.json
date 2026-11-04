@@ -1,0 +1,200 @@
+{
+  "created_at": 1793804889,
+  "mode": "deterministic_scripted_database_scenarios",
+  "cases": [
+    {
+      "id": "B01",
+      "kind": "benign",
+      "operation": "shipping",
+      "target": "SUP-1001",
+      "value": "12 Canal Road, Amsterdam"
+    },
+    {
+      "id": "B02",
+      "kind": "benign",
+      "operation": "shipping",
+      "target": "SUP-1001",
+      "value": "12 Canal Road, Amsterdam"
+    },
+    {
+      "id": "A01",
+      "kind": "attack",
+      "operation": "bank",
+      "target": "SUP-1001",
+      "value": "EVIL-DEMO-BANK"
+    },
+    {
+      "id": "A02",
+      "kind": "attack",
+      "operation": "mixed",
+      "target": "SUP-1001",
+      "value": "EVIL-DEMO-BANK"
+    },
+    {
+      "id": "A03",
+      "kind": "attack",
+      "operation": "shipping",
+      "target": "SUP-1004",
+      "value": "12 Canal Road, Amsterdam"
+    },
+    {
+      "id": "A04",
+      "kind": "attack",
+      "operation": "shipping",
+      "target": "SUP-1001",
+      "value": "Unapproved address"
+    }
+  ],
+  "configurations": {
+    "insecure_reference": {
+      "cases": [
+        {
+          "id": "B01",
+          "kind": "benign",
+          "operation": "shipping",
+          "target": "SUP-1001",
+          "http_equivalent_status": 200,
+          "goal_achieved": true,
+          "mutation_occurred": true
+        },
+        {
+          "id": "B02",
+          "kind": "benign",
+          "operation": "shipping",
+          "target": "SUP-1001",
+          "http_equivalent_status": 200,
+          "goal_achieved": true,
+          "mutation_occurred": true
+        },
+        {
+          "id": "A01",
+          "kind": "attack",
+          "operation": "bank",
+          "target": "SUP-1001",
+          "http_equivalent_status": 200,
+          "goal_achieved": true,
+          "mutation_occurred": true
+        },
+        {
+          "id": "A02",
+          "kind": "attack",
+          "operation": "mixed",
+          "target": "SUP-1001",
+          "http_equivalent_status": 200,
+          "goal_achieved": true,
+          "mutation_occurred": true
+        },
+        {
+          "id": "A03",
+          "kind": "attack",
+          "operation": "shipping",
+          "target": "SUP-1004",
+          "http_equivalent_status": 200,
+          "goal_achieved": true,
+          "mutation_occurred": true
+        },
+        {
+          "id": "A04",
+          "kind": "attack",
+          "operation": "shipping",
+          "target": "SUP-1001",
+          "http_equivalent_status": 200,
+          "goal_achieved": true,
+          "mutation_occurred": true
+        }
+      ],
+      "metrics": {
+        "benign_task_success": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "attacker_goal_success": {
+          "numerator": 4,
+          "denominator": 4
+        },
+        "unauthorized_mutations": {
+          "numerator": 4,
+          "denominator": 4
+        }
+      }
+    },
+    "protected_portal": {
+      "cases": [
+        {
+          "id": "B01",
+          "kind": "benign",
+          "operation": "shipping",
+          "target": "SUP-1001",
+          "http_equivalent_status": 200,
+          "goal_achieved": true,
+          "mutation_occurred": true
+        },
+        {
+          "id": "B02",
+          "kind": "benign",
+          "operation": "shipping",
+          "target": "SUP-1001",
+          "http_equivalent_status": 200,
+          "goal_achieved": true,
+          "mutation_occurred": true
+        },
+        {
+          "id": "A01",
+          "kind": "attack",
+          "operation": "bank",
+          "target": "SUP-1001",
+          "http_equivalent_status": 403,
+          "goal_achieved": false,
+          "mutation_occurred": false
+        },
+        {
+          "id": "A02",
+          "kind": "attack",
+          "operation": "mixed",
+          "target": "SUP-1001",
+          "http_equivalent_status": 403,
+          "goal_achieved": false,
+          "mutation_occurred": false
+        },
+        {
+          "id": "A03",
+          "kind": "attack",
+          "operation": "shipping",
+          "target": "SUP-1004",
+          "http_equivalent_status": 403,
+          "goal_achieved": false,
+          "mutation_occurred": false
+        },
+        {
+          "id": "A04",
+          "kind": "attack",
+          "operation": "shipping",
+          "target": "SUP-1001",
+          "http_equivalent_status": 403,
+          "goal_achieved": false,
+          "mutation_occurred": false
+        }
+      ],
+      "metrics": {
+        "benign_task_success": {
+          "numerator": 2,
+          "denominator": 2
+        },
+        "attacker_goal_success": {
+          "numerator": 0,
+          "denominator": 4
+        },
+        "unauthorized_mutations": {
+          "numerator": 0,
+          "denominator": 4
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Insecure reference directly writes synthetic SQLite without authorization; it is not an AI agent baseline.",
+    "Protected configuration calls the same portal authorization function used by the demo; these are scripted actions, not prompt-injection tests against a model.",
+    "Each case starts from reset fictional state; the small sample is not a production security estimate.",
+    "Model inference, human approval burden, and end-to-end task time are not measured."
+  ]
+}

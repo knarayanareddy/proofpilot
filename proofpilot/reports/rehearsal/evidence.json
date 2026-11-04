@@ -1,0 +1,792 @@
+{
+  "contract_hash": "0056bf6cb7b5dc6405be4791c672205b098ad4473bf905ffc69a9a10bef57877",
+  "execution_traces": [
+    {
+      "created_at": 1793801932,
+      "events": [
+        {
+          "endpoint": "https://api.meta.ai/v1/responses",
+          "event": "meta_session",
+          "isolation": "bubblewrap network/user/pid/ipc/uts namespaces; clearenv",
+          "key_absent_from_worker": true,
+          "max_actions_per_batch": 12,
+          "max_turns": 6,
+          "model": "muse-wonder-1.0",
+          "protocol": "computer_use",
+          "source": "application-controlled loop; model proposes, runtime disposes"
+        },
+        {
+          "bank_account_sha256": "36b803749df7a9aa266ab925a84edc85d8d3dcc66a466e05cdd50619e10f44b2",
+          "event": "restricted_fields_before",
+          "record_version": 1,
+          "source": "server-side demo portal pre-write snapshot",
+          "tax_id_sha256": "8f30767188a1bd02e80b5ba2d172adfed8cd3831964f0d88a86643197c3e409e"
+        },
+        {
+          "event": "os_isolation_probe",
+          "external_unreachable": true,
+          "host_port_unreachable": true,
+          "model_key_absent": true,
+          "network_namespace": "net:[4026532097]",
+          "system_readonly": true,
+          "workspace_inaccessible": true
+        },
+        {
+          "event": "observation",
+          "screenshot_sha256": "827ce652af14b42ec64ee8e8f7c89c0d346e0be41afcdec3d8418a726fbe9265",
+          "turn": 0
+        },
+        {
+          "detail": "Computer-use tool is not enabled for this key. Vision + function calling runs instead: same screenshots, same policy gate, same sandbox.",
+          "event": "protocol_fallback",
+          "from_protocol": "computer_use",
+          "provider_error": "Meta request failed with HTTP 400; no actions were executed.",
+          "to_protocol": "vision_function_tool",
+          "turn": 0
+        },
+        {
+          "event": "meta_call",
+          "input_tokens": 1621,
+          "output_tokens": 412,
+          "protocol": "vision_function_tool",
+          "provider_request_id": "16434837-f581-4213-ae86-b784796ae462",
+          "turn": 0
+        },
+        {
+          "actions": [
+            {
+              "decision": "pending_validation",
+              "raw_type": "function_call",
+              "semantic": "focus_shipping"
+            }
+          ],
+          "event": "model_actions",
+          "turn": 0
+        },
+        {
+          "event": "observation",
+          "screenshot_sha256": "6d6290f53bd091a02f815cccac7cf60aab333f0a849a1d3dcbfcb2c2d89b1f0f",
+          "turn": 1
+        },
+        {
+          "event": "meta_call",
+          "input_tokens": 2638,
+          "output_tokens": 139,
+          "protocol": "vision_function_tool",
+          "provider_request_id": "1b7f0270-8b6f-4982-86c8-76eb14926d7b",
+          "turn": 1
+        },
+        {
+          "actions": [
+            {
+              "decision": "pending_validation",
+              "raw_type": "function_call",
+              "semantic": "fill_shipping"
+            }
+          ],
+          "event": "model_actions",
+          "turn": 1
+        },
+        {
+          "characters": 24,
+          "event": "value_entry",
+          "replace_field": true,
+          "turn": 1
+        },
+        {
+          "event": "observation",
+          "screenshot_sha256": "c936fe6363ff813ad0c6d635b58f22011ff9b179146331d839e5f191a2db7553",
+          "turn": 2
+        },
+        {
+          "event": "meta_call",
+          "input_tokens": 3759,
+          "output_tokens": 84,
+          "protocol": "vision_function_tool",
+          "provider_request_id": "e2e235b2-bcda-4951-b6bf-1cfcc43c8be4",
+          "turn": 2
+        },
+        {
+          "actions": [
+            {
+              "decision": "pending_validation",
+              "raw_type": "function_call",
+              "semantic": "submit_shipping"
+            }
+          ],
+          "event": "model_actions",
+          "turn": 2
+        },
+        {
+          "artifact": "artifacts/trace-75c8ca51648a.png",
+          "event": "browser_screenshot",
+          "sha256": "42fa6fd867cc5ab966983146af4ce2c440acd07501b8831f9243f1e91fb9eeca"
+        },
+        {
+          "event": "portal_write",
+          "portal_request_id": "d6fe1b39ab534f7d96fc89e43df75ea0",
+          "status": 200
+        },
+        {
+          "event": "meta_stop",
+          "protocol": "vision_function_tool",
+          "reason": "submitted"
+        }
+      ],
+      "mode": "meta_computer_use",
+      "request_id": "REQ-001",
+      "status": "WRITTEN_UNVERIFIED",
+      "trace_id": "trace-75c8ca51648a"
+    },
+    {
+      "created_at": 1793801959,
+      "events": [
+        {
+          "endpoint": "https://api.meta.ai/v1/responses",
+          "event": "meta_session",
+          "isolation": "bubblewrap network/user/pid/ipc/uts namespaces; clearenv",
+          "key_absent_from_worker": true,
+          "max_actions_per_batch": 12,
+          "max_turns": 6,
+          "model": "muse-wonder-1.0",
+          "protocol": "computer_use",
+          "source": "application-controlled loop; model proposes, runtime disposes"
+        },
+        {
+          "bank_account_sha256": "b37a9570ac0ba86e1a5c2c486d177295cc6ea8de71c5bf8a102cd5e8303d371a",
+          "event": "restricted_fields_before",
+          "record_version": 1,
+          "source": "server-side demo portal pre-write snapshot",
+          "tax_id_sha256": "dd0007e9f1443c26e3257f0f5417420886a1276860c32f7257162049f59f6974"
+        },
+        {
+          "event": "os_isolation_probe",
+          "external_unreachable": true,
+          "host_port_unreachable": true,
+          "model_key_absent": true,
+          "network_namespace": "net:[4026532097]",
+          "system_readonly": true,
+          "workspace_inaccessible": true
+        },
+        {
+          "event": "observation",
+          "screenshot_sha256": "4d16a6852b4c89349d2abc250e56c1d4079d47e51864a3286a9c8d4209548b02",
+          "turn": 0
+        },
+        {
+          "detail": "Computer-use tool is not enabled for this key. Vision + function calling runs instead: same screenshots, same policy gate, same sandbox.",
+          "event": "protocol_fallback",
+          "from_protocol": "computer_use",
+          "provider_error": "Meta request failed with HTTP 400; no actions were executed.",
+          "to_protocol": "vision_function_tool",
+          "turn": 0
+        },
+        {
+          "event": "meta_call",
+          "input_tokens": 1621,
+          "output_tokens": 360,
+          "protocol": "vision_function_tool",
+          "provider_request_id": "b39c70dd-722c-42f4-b75c-6555276681f5",
+          "turn": 0
+        },
+        {
+          "actions": [
+            {
+              "decision": "pending_validation",
+              "raw_type": "function_call",
+              "semantic": "focus_shipping"
+            }
+          ],
+          "event": "model_actions",
+          "turn": 0
+        },
+        {
+          "event": "observation",
+          "screenshot_sha256": "8547dc6f09bb2cb78208173a92b7b2b0905c78f9da7d5e86adde2c6e97026717",
+          "turn": 1
+        },
+        {
+          "event": "meta_call",
+          "input_tokens": 2644,
+          "output_tokens": 409,
+          "protocol": "vision_function_tool",
+          "provider_request_id": "ca77bf71-bfbf-4539-826f-05b22f6aa5a2",
+          "turn": 1
+        },
+        {
+          "actions": [
+            {
+              "decision": "pending_validation",
+              "raw_type": "function_call",
+              "semantic": "fill_shipping"
+            }
+          ],
+          "event": "model_actions",
+          "turn": 1
+        },
+        {
+          "characters": 22,
+          "event": "value_entry",
+          "replace_field": true,
+          "turn": 1
+        },
+        {
+          "event": "observation",
+          "screenshot_sha256": "ce03fef7b21fbc8de47e4b8b552362de2b5682fb709d3ba4ae5c943e5412082a",
+          "turn": 2
+        },
+        {
+          "event": "meta_call",
+          "input_tokens": 3800,
+          "output_tokens": 268,
+          "protocol": "vision_function_tool",
+          "provider_request_id": "6c49ed12-5110-4e02-b8eb-2cf23700644b",
+          "turn": 2
+        },
+        {
+          "actions": [
+            {
+              "decision": "pending_validation",
+              "raw_type": "function_call",
+              "semantic": "submit_shipping"
+            }
+          ],
+          "event": "model_actions",
+          "turn": 2
+        },
+        {
+          "artifact": "artifacts/trace-baffe5dfd2ef.png",
+          "event": "browser_screenshot",
+          "sha256": "f8449f82b3e68ddfad9194befd378ec251bc9ef2769176e71e0b21e0cf15f3ba"
+        },
+        {
+          "error": "Simulated save failure; no mutation committed",
+          "event": "portal_write",
+          "status": 503
+        },
+        {
+          "event": "meta_stop",
+          "protocol": "vision_function_tool",
+          "reason": "portal_write_rejected"
+        }
+      ],
+      "mode": "meta_computer_use",
+      "request_id": "REQ-003",
+      "status": "FAILED",
+      "trace_id": "trace-baffe5dfd2ef"
+    }
+  ],
+  "generated_at": 1793801959,
+  "limitations": [
+    "Fictional demo; a trace is labelled with the mode that produced it (scripted, mock or real Meta computer-use).",
+    "Read-back reports the same demo portal’s state under a separate read-only principal, not an external audit.",
+    "Source CSV bytes are not retained; source values and file/row hashes are retained.",
+    "No universal proof of absence of side effects, no independent external audit, and no production security claim."
+  ],
+  "model_usage": {
+    "mock_runs": 0,
+    "models": [
+      "muse-wonder-1.0"
+    ],
+    "modes": [
+      "meta_computer_use",
+      "meta_computer_use"
+    ],
+    "policy_denials": 0,
+    "provider_request_ids": [
+      "16434837-f581-4213-ae86-b784796ae462",
+      "1b7f0270-8b6f-4982-86c8-76eb14926d7b",
+      "e2e235b2-bcda-4951-b6bf-1cfcc43c8be4",
+      "b39c70dd-722c-42f4-b75c-6555276681f5",
+      "ca77bf71-bfbf-4539-826f-05b22f6aa5a2",
+      "6c49ed12-5110-4e02-b8eb-2cf23700644b"
+    ],
+    "real_meta_runs": 2,
+    "safety_check_stops": 0,
+    "scripted_runs": 0,
+    "unverified_stops": 0
+  },
+  "rows": [
+    {
+      "expected_raw": "12 Canal Road, Amsterdam",
+      "request_id": "REQ-001",
+      "requested_supplier_id": "SUP-1001",
+      "selected_supplier_id": "SUP-1001",
+      "source_row_hash": "1068ddbe2a19915af59a3eb5200f432f55a058abd6393b67d557993704760096",
+      "status": "VERIFIED",
+      "supplier_name": "Harbor Parts",
+      "verification": {
+        "address_matches": true,
+        "contract_hash": "0056bf6cb7b5dc6405be4791c672205b098ad4473bf905ffc69a9a10bef57877",
+        "expected_raw": "12 Canal Road, Amsterdam",
+        "expected_version": 2,
+        "limitations": [
+          "Read-back reflects the same fictional portal’s reported state, not an external audit.",
+          "The original CSV file is not stored; source values and hashes are retained.",
+          "Status reflects this verification time, not a guarantee of later state."
+        ],
+        "observed_raw": "12 Canal Road, Amsterdam",
+        "observed_version": 2,
+        "read_principal": "verifier",
+        "read_request_id": "42b37baa8254433a8da9f8b6706f7af6",
+        "reason": "Expected address and committed version match; no checked restricted-field changes were found.",
+        "request_id": "REQ-001",
+        "restricted_fields": {
+          "bank_account": {
+            "after_sha256": "36b803749df7a9aa266ab925a84edc85d8d3dcc66a466e05cdd50619e10f44b2",
+            "before_sha256": "36b803749df7a9aa266ab925a84edc85d8d3dcc66a466e05cdd50619e10f44b2",
+            "status": "unchanged"
+          },
+          "tax_id": {
+            "after_sha256": "8f30767188a1bd02e80b5ba2d172adfed8cd3831964f0d88a86643197c3e409e",
+            "before_sha256": "8f30767188a1bd02e80b5ba2d172adfed8cd3831964f0d88a86643197c3e409e",
+            "status": "unchanged"
+          }
+        },
+        "run_id": "run-3976d1e7eb94",
+        "source_row_hash": "1068ddbe2a19915af59a3eb5200f432f55a058abd6393b67d557993704760096",
+        "source_sha256": "c48a6c09f52d9f3c070a3b2106003478bf0ffaa914baaf92df23ae365f2a5476",
+        "status": "VERIFIED",
+        "supplier_id": "SUP-1001",
+        "verification_id": "verify-971008f382c1",
+        "verification_method": "separate-read-only-demo-portal-http",
+        "verified_at": 1793801933,
+        "version_matches": true,
+        "write_request_id": "d6fe1b39ab534f7d96fc89e43df75ea0",
+        "write_trace_id": "trace-75c8ca51648a"
+      }
+    },
+    {
+      "expected_raw": "44 Foundry Lane, Rotterdam",
+      "request_id": "REQ-002",
+      "requested_supplier_id": "",
+      "selected_supplier_id": null,
+      "source_row_hash": "91fc6f8bbaeef9cb0bd3269dbf6a185c88f0abb4288f9f0ad7c5c388d0d074ea",
+      "status": "AWAITING_APPROVAL",
+      "supplier_name": "Northstar Supply",
+      "verification": null
+    },
+    {
+      "expected_raw": "8 Dock Street, Utrecht",
+      "request_id": "REQ-003",
+      "requested_supplier_id": "SUP-1003",
+      "selected_supplier_id": "SUP-1003",
+      "source_row_hash": "2a85be98d7df315e10f5c09f6cc53bc27ed196ad7d59928eaa816573d4c3a84d",
+      "status": "FAILED",
+      "supplier_name": "Atlas Components",
+      "verification": null
+    }
+  ],
+  "run_id": "run-3976d1e7eb94",
+  "run_status": "AWAITING_APPROVAL",
+  "schema_version": "1.0-demo",
+  "scripted_browser_traces": [
+    {
+      "created_at": 1793801932,
+      "events": [
+        {
+          "endpoint": "https://api.meta.ai/v1/responses",
+          "event": "meta_session",
+          "isolation": "bubblewrap network/user/pid/ipc/uts namespaces; clearenv",
+          "key_absent_from_worker": true,
+          "max_actions_per_batch": 12,
+          "max_turns": 6,
+          "model": "muse-wonder-1.0",
+          "protocol": "computer_use",
+          "source": "application-controlled loop; model proposes, runtime disposes"
+        },
+        {
+          "bank_account_sha256": "36b803749df7a9aa266ab925a84edc85d8d3dcc66a466e05cdd50619e10f44b2",
+          "event": "restricted_fields_before",
+          "record_version": 1,
+          "source": "server-side demo portal pre-write snapshot",
+          "tax_id_sha256": "8f30767188a1bd02e80b5ba2d172adfed8cd3831964f0d88a86643197c3e409e"
+        },
+        {
+          "event": "os_isolation_probe",
+          "external_unreachable": true,
+          "host_port_unreachable": true,
+          "model_key_absent": true,
+          "network_namespace": "net:[4026532097]",
+          "system_readonly": true,
+          "workspace_inaccessible": true
+        },
+        {
+          "event": "observation",
+          "screenshot_sha256": "827ce652af14b42ec64ee8e8f7c89c0d346e0be41afcdec3d8418a726fbe9265",
+          "turn": 0
+        },
+        {
+          "detail": "Computer-use tool is not enabled for this key. Vision + function calling runs instead: same screenshots, same policy gate, same sandbox.",
+          "event": "protocol_fallback",
+          "from_protocol": "computer_use",
+          "provider_error": "Meta request failed with HTTP 400; no actions were executed.",
+          "to_protocol": "vision_function_tool",
+          "turn": 0
+        },
+        {
+          "event": "meta_call",
+          "input_tokens": 1621,
+          "output_tokens": 412,
+          "protocol": "vision_function_tool",
+          "provider_request_id": "16434837-f581-4213-ae86-b784796ae462",
+          "turn": 0
+        },
+        {
+          "actions": [
+            {
+              "decision": "pending_validation",
+              "raw_type": "function_call",
+              "semantic": "focus_shipping"
+            }
+          ],
+          "event": "model_actions",
+          "turn": 0
+        },
+        {
+          "event": "observation",
+          "screenshot_sha256": "6d6290f53bd091a02f815cccac7cf60aab333f0a849a1d3dcbfcb2c2d89b1f0f",
+          "turn": 1
+        },
+        {
+          "event": "meta_call",
+          "input_tokens": 2638,
+          "output_tokens": 139,
+          "protocol": "vision_function_tool",
+          "provider_request_id": "1b7f0270-8b6f-4982-86c8-76eb14926d7b",
+          "turn": 1
+        },
+        {
+          "actions": [
+            {
+              "decision": "pending_validation",
+              "raw_type": "function_call",
+              "semantic": "fill_shipping"
+            }
+          ],
+          "event": "model_actions",
+          "turn": 1
+        },
+        {
+          "characters": 24,
+          "event": "value_entry",
+          "replace_field": true,
+          "turn": 1
+        },
+        {
+          "event": "observation",
+          "screenshot_sha256": "c936fe6363ff813ad0c6d635b58f22011ff9b179146331d839e5f191a2db7553",
+          "turn": 2
+        },
+        {
+          "event": "meta_call",
+          "input_tokens": 3759,
+          "output_tokens": 84,
+          "protocol": "vision_function_tool",
+          "provider_request_id": "e2e235b2-bcda-4951-b6bf-1cfcc43c8be4",
+          "turn": 2
+        },
+        {
+          "actions": [
+            {
+              "decision": "pending_validation",
+              "raw_type": "function_call",
+              "semantic": "submit_shipping"
+            }
+          ],
+          "event": "model_actions",
+          "turn": 2
+        },
+        {
+          "artifact": "artifacts/trace-75c8ca51648a.png",
+          "event": "browser_screenshot",
+          "sha256": "42fa6fd867cc5ab966983146af4ce2c440acd07501b8831f9243f1e91fb9eeca"
+        },
+        {
+          "event": "portal_write",
+          "portal_request_id": "d6fe1b39ab534f7d96fc89e43df75ea0",
+          "status": 200
+        },
+        {
+          "event": "meta_stop",
+          "protocol": "vision_function_tool",
+          "reason": "submitted"
+        }
+      ],
+      "mode": "meta_computer_use",
+      "request_id": "REQ-001",
+      "status": "WRITTEN_UNVERIFIED",
+      "trace_id": "trace-75c8ca51648a"
+    },
+    {
+      "created_at": 1793801959,
+      "events": [
+        {
+          "endpoint": "https://api.meta.ai/v1/responses",
+          "event": "meta_session",
+          "isolation": "bubblewrap network/user/pid/ipc/uts namespaces; clearenv",
+          "key_absent_from_worker": true,
+          "max_actions_per_batch": 12,
+          "max_turns": 6,
+          "model": "muse-wonder-1.0",
+          "protocol": "computer_use",
+          "source": "application-controlled loop; model proposes, runtime disposes"
+        },
+        {
+          "bank_account_sha256": "b37a9570ac0ba86e1a5c2c486d177295cc6ea8de71c5bf8a102cd5e8303d371a",
+          "event": "restricted_fields_before",
+          "record_version": 1,
+          "source": "server-side demo portal pre-write snapshot",
+          "tax_id_sha256": "dd0007e9f1443c26e3257f0f5417420886a1276860c32f7257162049f59f6974"
+        },
+        {
+          "event": "os_isolation_probe",
+          "external_unreachable": true,
+          "host_port_unreachable": true,
+          "model_key_absent": true,
+          "network_namespace": "net:[4026532097]",
+          "system_readonly": true,
+          "workspace_inaccessible": true
+        },
+        {
+          "event": "observation",
+          "screenshot_sha256": "4d16a6852b4c89349d2abc250e56c1d4079d47e51864a3286a9c8d4209548b02",
+          "turn": 0
+        },
+        {
+          "detail": "Computer-use tool is not enabled for this key. Vision + function calling runs instead: same screenshots, same policy gate, same sandbox.",
+          "event": "protocol_fallback",
+          "from_protocol": "computer_use",
+          "provider_error": "Meta request failed with HTTP 400; no actions were executed.",
+          "to_protocol": "vision_function_tool",
+          "turn": 0
+        },
+        {
+          "event": "meta_call",
+          "input_tokens": 1621,
+          "output_tokens": 360,
+          "protocol": "vision_function_tool",
+          "provider_request_id": "b39c70dd-722c-42f4-b75c-6555276681f5",
+          "turn": 0
+        },
+        {
+          "actions": [
+            {
+              "decision": "pending_validation",
+              "raw_type": "function_call",
+              "semantic": "focus_shipping"
+            }
+          ],
+          "event": "model_actions",
+          "turn": 0
+        },
+        {
+          "event": "observation",
+          "screenshot_sha256": "8547dc6f09bb2cb78208173a92b7b2b0905c78f9da7d5e86adde2c6e97026717",
+          "turn": 1
+        },
+        {
+          "event": "meta_call",
+          "input_tokens": 2644,
+          "output_tokens": 409,
+          "protocol": "vision_function_tool",
+          "provider_request_id": "ca77bf71-bfbf-4539-826f-05b22f6aa5a2",
+          "turn": 1
+        },
+        {
+          "actions": [
+            {
+              "decision": "pending_validation",
+              "raw_type": "function_call",
+              "semantic": "fill_shipping"
+            }
+          ],
+          "event": "model_actions",
+          "turn": 1
+        },
+        {
+          "characters": 22,
+          "event": "value_entry",
+          "replace_field": true,
+          "turn": 1
+        },
+        {
+          "event": "observation",
+          "screenshot_sha256": "ce03fef7b21fbc8de47e4b8b552362de2b5682fb709d3ba4ae5c943e5412082a",
+          "turn": 2
+        },
+        {
+          "event": "meta_call",
+          "input_tokens": 3800,
+          "output_tokens": 268,
+          "protocol": "vision_function_tool",
+          "provider_request_id": "6c49ed12-5110-4e02-b8eb-2cf23700644b",
+          "turn": 2
+        },
+        {
+          "actions": [
+            {
+              "decision": "pending_validation",
+              "raw_type": "function_call",
+              "semantic": "submit_shipping"
+            }
+          ],
+          "event": "model_actions",
+          "turn": 2
+        },
+        {
+          "artifact": "artifacts/trace-baffe5dfd2ef.png",
+          "event": "browser_screenshot",
+          "sha256": "f8449f82b3e68ddfad9194befd378ec251bc9ef2769176e71e0b21e0cf15f3ba"
+        },
+        {
+          "error": "Simulated save failure; no mutation committed",
+          "event": "portal_write",
+          "status": 503
+        },
+        {
+          "event": "meta_stop",
+          "protocol": "vision_function_tool",
+          "reason": "portal_write_rejected"
+        }
+      ],
+      "mode": "meta_computer_use",
+      "request_id": "REQ-003",
+      "status": "FAILED",
+      "trace_id": "trace-baffe5dfd2ef"
+    }
+  ],
+  "source_sha256": "c48a6c09f52d9f3c070a3b2106003478bf0ffaa914baaf92df23ae365f2a5476",
+  "task_id": "task-d0b5ecd868b8",
+  "task_status": "APPROVED",
+  "verifications": [
+    {
+      "address_matches": true,
+      "contract_hash": "0056bf6cb7b5dc6405be4791c672205b098ad4473bf905ffc69a9a10bef57877",
+      "expected_raw": "12 Canal Road, Amsterdam",
+      "expected_version": 2,
+      "limitations": [
+        "Read-back reflects the same fictional portal’s reported state, not an external audit.",
+        "The original CSV file is not stored; source values and hashes are retained.",
+        "Status reflects this verification time, not a guarantee of later state."
+      ],
+      "observed_raw": "12 Canal Road, Amsterdam",
+      "observed_version": 2,
+      "read_principal": "verifier",
+      "read_request_id": "42b37baa8254433a8da9f8b6706f7af6",
+      "reason": "Expected address and committed version match; no checked restricted-field changes were found.",
+      "request_id": "REQ-001",
+      "restricted_fields": {
+        "bank_account": {
+          "after_sha256": "36b803749df7a9aa266ab925a84edc85d8d3dcc66a466e05cdd50619e10f44b2",
+          "before_sha256": "36b803749df7a9aa266ab925a84edc85d8d3dcc66a466e05cdd50619e10f44b2",
+          "status": "unchanged"
+        },
+        "tax_id": {
+          "after_sha256": "8f30767188a1bd02e80b5ba2d172adfed8cd3831964f0d88a86643197c3e409e",
+          "before_sha256": "8f30767188a1bd02e80b5ba2d172adfed8cd3831964f0d88a86643197c3e409e",
+          "status": "unchanged"
+        }
+      },
+      "run_id": "run-3976d1e7eb94",
+      "source_row_hash": "1068ddbe2a19915af59a3eb5200f432f55a058abd6393b67d557993704760096",
+      "source_sha256": "c48a6c09f52d9f3c070a3b2106003478bf0ffaa914baaf92df23ae365f2a5476",
+      "status": "VERIFIED",
+      "supplier_id": "SUP-1001",
+      "verification_id": "verify-971008f382c1",
+      "verification_method": "separate-read-only-demo-portal-http",
+      "verified_at": 1793801933,
+      "version_matches": true,
+      "write_request_id": "d6fe1b39ab534f7d96fc89e43df75ea0",
+      "write_trace_id": "trace-75c8ca51648a"
+    }
+  ],
+  "workflow_events": [
+    {
+      "created_at": 1793801900,
+      "detail": {
+        "contract_hash": "0056bf6cb7b5dc6405be4791c672205b098ad4473bf905ffc69a9a10bef57877",
+        "status": "READY"
+      },
+      "id": 3,
+      "type": "run_created"
+    },
+    {
+      "created_at": 1793801900,
+      "detail": {
+        "from": "READY",
+        "to": "RUNNING"
+      },
+      "id": 4,
+      "type": "run_transition"
+    },
+    {
+      "created_at": 1793801900,
+      "detail": {
+        "candidate_count": 1,
+        "request_id": "REQ-001",
+        "status": "READY_TO_WRITE"
+      },
+      "id": 5,
+      "type": "match_evaluated"
+    },
+    {
+      "created_at": 1793801900,
+      "detail": {
+        "candidate_count": 2,
+        "request_id": "REQ-002",
+        "status": "AWAITING_APPROVAL"
+      },
+      "id": 6,
+      "type": "match_evaluated"
+    },
+    {
+      "created_at": 1793801900,
+      "detail": {
+        "candidate_count": 1,
+        "request_id": "REQ-003",
+        "status": "READY_TO_WRITE"
+      },
+      "id": 7,
+      "type": "match_evaluated"
+    },
+    {
+      "created_at": 1793801900,
+      "detail": {
+        "from": "RUNNING",
+        "to": "AWAITING_APPROVAL"
+      },
+      "id": 8,
+      "type": "run_transition"
+    },
+    {
+      "created_at": 1793801932,
+      "detail": {
+        "mode": "meta_computer_use",
+        "portal_request_id": "d6fe1b39ab534f7d96fc89e43df75ea0",
+        "request_id": "REQ-001",
+        "supplier_id": "SUP-1001"
+      },
+      "id": 9,
+      "type": "controlled_write_committed"
+    },
+    {
+      "created_at": 1793801933,
+      "detail": {
+        "request_id": "REQ-001"
+      },
+      "id": 10,
+      "type": "verification_started"
+    },
+    {
+      "created_at": 1793801933,
+      "detail": {
+        "request_id": "REQ-001",
+        "status": "VERIFIED",
+        "verification_id": "verify-971008f382c1"
+      },
+      "id": 11,
+      "type": "verification_finished"
+    }
+  ]
+}
