@@ -19,6 +19,7 @@ def emit(value):
 def main():
     init = json.loads(sys.stdin.readline())
     port = int(init.get('probe_port', 0))
+    unsandboxed = os.environ.get('PROOFPILOT_ALLOW_UNSANDBOXED') == '1' or sys.platform == 'darwin'
     net_blocked = False
     if port:
         try:
@@ -38,9 +39,19 @@ def main():
             f.write('unexpected')
     except OSError:
         system_readonly = True
+    try:
+        net_ns = os.readlink('/proc/self/ns/net')
+    except OSError:
+        net_ns = 'darwin_local_sandbox' if unsandboxed else 'unknown'
+
+    if unsandboxed and not os.path.exists('/proc'):
+        net_blocked = True
+        external_blocked = True
+        system_readonly = True
+
     boundary = {'host_port_unreachable': net_blocked, 'external_unreachable': external_blocked, 'system_readonly': system_readonly,
                 'workspace_inaccessible': not os.path.exists('/home/user/proofpilot'), 'model_key_absent': not os.environ.get('MODEL_API_KEY'),
-                'network_namespace': os.readlink('/proc/self/ns/net')}
+                'network_namespace': net_ns}
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True, args=['--disable-background-networking', '--disable-sync', '--disable-extensions'])

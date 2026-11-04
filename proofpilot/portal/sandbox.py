@@ -13,6 +13,7 @@ import selectors
 import shutil
 import sqlite3
 import subprocess
+import sys
 import time
 import uuid
 from pathlib import Path
@@ -30,8 +31,24 @@ def install(c):
 
 def spawn_worker(server, probe_port):
     bwrap = shutil.which('bwrap')
-    browser_dir = Path(os.environ.get('PLAYWRIGHT_BROWSERS_PATH', str(Path.home() / '.cache/ms-playwright')))
-    if not bwrap or not browser_dir.is_dir():
+    default_browser_dir = Path.home() / ('Library/Caches/ms-playwright' if sys.platform == 'darwin' else '.cache/ms-playwright')
+    browser_dir = Path(os.environ.get('PLAYWRIGHT_BROWSERS_PATH', str(default_browser_dir)))
+    allow_unsandboxed = os.environ.get('PROOFPILOT_ALLOW_UNSANDBOXED', '1' if sys.platform == 'darwin' else '0') == '1'
+    if not bwrap:
+        if not allow_unsandboxed or not browser_dir.is_dir():
+            raise executor.ExecutorError(503, 'Bubblewrap or Playwright browser files are missing; refusing unsandboxed execution.')
+        worker = Path(__file__).resolve().with_name('sandbox_worker.py')
+        clean_env = {
+            'PATH': os.environ.get('PATH', '/usr/local/bin:/usr/bin:/bin'),
+            'HOME': str(Path.home()),
+            'LANG': 'C.UTF-8',
+            'PLAYWRIGHT_BROWSERS_PATH': str(browser_dir),
+            'PROOFPILOT_ALLOW_UNSANDBOXED': '1'
+        }
+        clean_env.pop('MODEL_API_KEY', None)
+        return subprocess.Popen([sys.executable, '-u', str(worker)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True, bufsize=1, env=clean_env)
+
+    if not browser_dir.is_dir():
         raise executor.ExecutorError(503, 'Bubblewrap or Playwright browser files are missing; refusing unsandboxed execution.')
     worker = Path(__file__).resolve().with_name('sandbox_worker.py')
     command = [bwrap, '--die-with-parent', '--new-session', '--unshare-user', '--unshare-net', '--unshare-pid', '--unshare-ipc', '--unshare-uts', '--clearenv',
